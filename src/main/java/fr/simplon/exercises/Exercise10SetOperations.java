@@ -1,5 +1,12 @@
 package fr.simplon.exercises;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.IntStream;
+
 /**
  * Exercice 10: Opérations sur les ensembles
  * 
@@ -14,7 +21,12 @@ public class Exercise10SetOperations {
      * @return true si la valeur est trouvée dans les length premiers éléments
      */
     public boolean contains(int[] array, int value) {
-        throw new UnsupportedOperationException();
+      boolean b = false;
+      for (int i : array){
+        if(i == value){
+            b = true;
+        }
+      } return b;
 
     }
 
@@ -25,9 +37,20 @@ public class Exercise10SetOperations {
      * @return un tableau contenant tous les éléments uniques des deux tableaux
      */
     public int[] union(int[] array1, int[] array2) {
-        throw new UnsupportedOperationException();
-
-    }
+        Set <Integer> set = new HashSet<>();
+        for (int i : array1) { 
+            set.add(i); 
+        } 
+        for (int n : array2) {
+             set.add(n); 
+            } 
+            int[] result = new int[set.size()];
+             int count = 0; for (int n : set) {
+                 result[count++] = n; 
+                }
+                  return result;
+            }
+    
 
     /**
      * Intersection de deux tableaux (éléments présents dans les deux tableaux)
@@ -36,8 +59,13 @@ public class Exercise10SetOperations {
      * @return un tableau contenant les éléments présents dans les deux tableaux
      */
     public int[] intersection(int[] array1, int[] array2) {
-        throw new UnsupportedOperationException();
-
+  int[] tab = new int[array1.length];
+  int count =0;
+        for (int i : array1){
+            if(contains(array2, i)){
+                tab[count++]=i;
+            }
+        }return Arrays.copyOf(tab, count);
     }
     
     /**
@@ -47,9 +75,19 @@ public class Exercise10SetOperations {
      * @return un tableau contenant les éléments de array1 absents de array2
      */
     public int[] difference(int[] array1, int[] array2) {
-        throw new UnsupportedOperationException();
-
-    }
+       Set <Integer> set = new HashSet<>();
+        for (int i : array1) { 
+            set.add(i); 
+        } 
+        for (int n : array2) {
+             set.remove(n); 
+            } 
+            int[] result = new int[set.size()];
+             int count = 0; for (int n : set) {
+                 result[count++] = n; 
+                }
+                  return result;
+            }
     
     /**
      * Différence symétrique (éléments présents dans un seul des deux tableaux)
@@ -58,9 +96,15 @@ public class Exercise10SetOperations {
      * @return un tableau contenant les éléments présents dans un seul tableau
      */
     public int[] symmetricDifference(int[] array1, int[] array2) {
-        throw new UnsupportedOperationException();
+        int[] union= union(array1, array2);
+        int[] intersection = intersection(array1, array2);
+           return difference(union, intersection);
+            }  
 
-    }
+
+
+
+    
     
     /**
      * Vérifie si array1 est un sous-ensemble de array2
@@ -69,7 +113,11 @@ public class Exercise10SetOperations {
      * @return true si tous les éléments de array1 sont dans array2
      */
     public boolean isSubset(int[] array1, int[] array2) {
-        throw new UnsupportedOperationException();
+        for (int i : array1){
+            if(!contains(array2, i)){
+                return false;
+            }
+        } return true;
 
     }
     
@@ -79,8 +127,15 @@ public class Exercise10SetOperations {
      * @return un tableau contenant uniquement les éléments uniques
      */
     public int[] removeDuplicates(int[] array) {
-        throw new UnsupportedOperationException();
-
+        Set<Integer> seen = new HashSet<>();
+        int[] tab = new int[array.length];
+  int count =0;
+        for (int i : array){
+            if(seen.add(i)){
+                tab[count++]=i;
+            }
+        }return Arrays.copyOf(tab, count);
+   
     }
     
     /**
@@ -89,7 +144,13 @@ public class Exercise10SetOperations {
      * @return le nombre d'éléments uniques
      */
     public int countUnique(int[] array) {
-        throw new UnsupportedOperationException();
-
+       int[] tab = new int[array.length];
+  int count =0;
+        for (int i : array){
+            if(contains(tab, i)){
+               continue;
+            }
+             tab[count++]=i;
+        }return count ;
     }
 }

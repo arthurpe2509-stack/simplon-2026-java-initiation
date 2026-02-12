@@ -1,5 +1,7 @@
 package fr.simplon.exercises;
 
+import java.util.Collections;
+
 /**
  * Exercice 12: Comparaison et échange d'éléments
  * 
@@ -14,8 +16,10 @@ public class Exercise12SwappingElements {
      * @param j second index
      */
     public int[] swap(int[] array, int i, int j) {
-        throw new UnsupportedOperationException();
-
+   int temp = array[i];
+   array[i]= array[j];
+   array[j]= temp;
+   return array;
     }
     
     /**
@@ -26,7 +30,11 @@ public class Exercise12SwappingElements {
      * @return le tableau modifié
      */
     public int[] shiftLeft(int[] array, int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException();
+    int temp = array[fromIndex];
+        for (int i=fromIndex; i>toIndex; i--){
+            array[i]=array[i-1];
+        } array[toIndex]= temp;
+        return array;
 
     }
     
@@ -38,7 +46,11 @@ public class Exercise12SwappingElements {
      * @return le tableau modifié
      */
     public int[] shiftRight(int[] array, int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException();
+       int temp = array[fromIndex];
+        for (int i=fromIndex; i<toIndex; i++){
+            array[i]=array[i+1];
+        } array[toIndex]= temp;
+        return array;
 
     }
     
@@ -48,9 +60,23 @@ public class Exercise12SwappingElements {
      * @return le tableau modifié
      */
     public int[] moveSmallestToFront(int[] array) {
-        throw new UnsupportedOperationException();
-
+        if (array == null || array.length <= 1) {
+            return array;
+        }
+    int minIndex = 0;
+    for (int i = 1; i < array.length; i++) {
+        if (array[i] < array[minIndex])
+             minIndex = i;
     }
+    int temp = array[minIndex];
+    for (int j = minIndex; j > 0; j--) {
+        array[j] = array[j - 1];
+    }
+    array[0] = temp;
+    return array;
+}
+
+    
     
     /**
      * Place le plus grand élément à la fin du tableau
@@ -58,8 +84,20 @@ public class Exercise12SwappingElements {
      * @return le tableau modifié
      */
     public int[] moveLargestToEnd(int[] array) {
-        throw new UnsupportedOperationException();
-
+       if (array.length == 0){
+            return array;
+        }
+    int maxIndex = 0;
+    for (int i = 1; i < array.length; i++) {
+        if (array[i] > array[maxIndex])
+             maxIndex = i;
+    }
+    int temp = array[maxIndex];
+    for (int j = maxIndex; j < array.length - 1; j++) {
+        array[j] = array[j + 1];
+    }
+    array[array.length - 1] = temp;
+    return array;
     }
     
     /**
@@ -69,9 +107,15 @@ public class Exercise12SwappingElements {
      * @return true si array[i] <= array[i+1], false sinon
      */
     public boolean isInOrder(int[] array, int i) {
-        throw new UnsupportedOperationException();
+        if (i < 0 || i >= array.length - 1) {
+            return true;
+        }return array[i] <= array[i + 1]; }
+            
+        
 
-    }
+
+
+    
     
     /**
      * Échange tous les éléments adjacents qui ne sont pas dans le bon ordre

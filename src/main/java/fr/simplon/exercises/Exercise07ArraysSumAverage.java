@@ -13,9 +13,11 @@ public class Exercise07ArraysSumAverage {
      * @return la somme de tous les éléments
      */
     public int sum(int[] array) {
-        throw new UnsupportedOperationException();
-
-    }
+       int somme = 0;
+       for (int i : array){
+        somme = somme + i;
+       }
+       return somme;}
     
     /**
      * Calcule la moyenne des éléments d'un tableau
@@ -23,19 +25,28 @@ public class Exercise07ArraysSumAverage {
      * @return la moyenne (arrondie à l'entier inférieur)
      */
     public double average(int[] array) {
-        throw new UnsupportedOperationException();
-
-    }
-    
+        double total = 0;
+        for (int i = 0; i < array.length; i++){
+            total = total + array[i];
+        }
+    double moyenne = total / array.length;
+    return moyenne ;}
     /**
      * Compte combien d'éléments sont supérieurs à la moyenne
      * @param array le tableau
      * @return le nombre d'éléments supérieurs à la moyenne
      */
     public int countAboveAverage(int[] array) {
-        throw new UnsupportedOperationException();
-
-    }
+     double average = average(array);
+     int count = 0;
+     for (int i = 0; i < array.length; i++ ){
+        if ( array[i]> average){
+            count++;
+        }
+     }
+     return count;
+    } 
+    
     
     /**
      * Calcule la somme des nombres pairs dans un tableau
@@ -43,7 +54,14 @@ public class Exercise07ArraysSumAverage {
      * @return la somme des nombres pairs
      */
     public int sumEvenNumbers(int[] array) {
-        throw new UnsupportedOperationException();
+       
+        int number = 0;
+       for (int i = 0; i < array.length; i++){
+        if ( array[i] % 2 == 0){
+           number += array[i];
+        }
+       }
+       return number;
 
     }
     
@@ -53,7 +71,11 @@ public class Exercise07ArraysSumAverage {
      * @return le produit de tous les éléments
      */
     public int product(int[] array) {
-        throw new UnsupportedOperationException();
-
+       int product = 1;
+       for (int i=0; i < array.length; i++){
+        product *= array[i];
+       }
+       return product;
     }
 }
+
